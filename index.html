@@ -3,88 +3,197 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GOALWAVE - Demo Betting</title>
+<title>GOALWAVE - Kenya's Demo Betting Platform</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#0f1419;color:#fff}
-header{background:#1a222d;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
-.logo{font-size:20px;font-weight:900;color:#00ff88}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',system-ui,sans-serif}
+body{background:#0a0e14;color:#fff;overflow-x:hidden}
+:root{--green:#00ff88;--dark:#121a26;--card:#1c2736;--red:#ff3b30}
+header{background:var(--dark);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;border-bottom:1px solid #223}
+.logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:22px;color:var(--green)}
+.logo i{background:var(--green);color:#000;width:32px;height:32px;border-radius:8px;display:grid;place-items:center}
 .logo span{color:#fff}
-.bal{background:#00ff88;color:#000;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px}
-.container{display:grid;grid-template-columns:1fr 330px;gap:12px;max-width:1200px;margin:12px auto;padding:0 10px}
-@media(max-width:850px){.container{grid-template-columns:1fr}}
-.box{background:#1a222d;border-radius:12px;padding:12px}
-.match{background:#242f3e;border-radius:10px;padding:10px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
-.odd{display:flex;gap:6px}
-.odd div{background:#0f1419;border:1px solid #34495e;padding:6px 12px;border-radius:8px;cursor:pointer;font-weight:700}
-.odd div:hover{background:#00ff88;color:#000}
-.betslip{position:sticky;top:60px;height:fit-content}
-.input{width:100%;padding:10px;background:#0f1419;border:1px solid #34495e;border-radius:8px;color:#fff;margin:10px 0}
-.btn{width:100%;padding:12px;background:#00ff88;color:#000;border:none;border-radius:10px;font-weight:900;cursor:pointer}
-.small{font-size:11px;color:#8a9bb0}
+.hdr-right{display:flex;gap:8px;align-items:center}
+.btn-sm{padding:6px 12px;border-radius:20px;border:none;font-weight:700;font-size:12px;cursor:pointer}
+.btn-green{background:var(--green);color:#000}
+.btn-outline{background:transparent;border:1px solid #3a4a60;color:#fff}
+.balance{font-size:13px;background:var(--card);padding:6px 10px;border-radius:20px;border:1px solid var(--green)}
+.nav-tabs{display:flex;gap:0;background:var(--dark);overflow-x:auto;position:sticky;top:52px;z-index:99}
+.nav-tabs div{padding:12px 16px;white-space:nowrap;font-size:13px;font-weight:700;color:#8a9bb0;cursor:pointer;border-bottom:3px solid transparent}
+.nav-tabs div.active{color:var(--green);border-bottom-color:var(--green)}
+.main{display:grid;grid-template-columns:1fr 360px;max-width:1300px;margin:0 auto}
+@media(max-width:900px){.main{grid-template-columns:1fr} .betslip-panel{position:fixed;bottom:0;left:0;right:0;max-height:60vh;z-index:200;border-radius:18px 18px 0 0}}
+.content{padding:12px}
+.card{background:var(--card);border-radius:14px;padding:12px;margin-bottom:12px;border:1px solid #2a3a52}
+.league{font-size:11px;color:#8a9bb0;text-transform:uppercase;letter-spacing:0.5px;display:flex;justify-content:space-between}
+.match-row{display:flex;justify-content:space-between;align-items:center;margin:10px 0}
+.team{font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px}
+.odds-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.odd-box{background:#0f1419;border:1px solid #2a3a52;border-radius:10px;padding:10px;text-align:center;cursor:pointer;transition:.2s}
+.odd-box:hover,.odd-box.sel{border-color:var(--green);background:rgba(0,255,136,.12)}
+.odd-val{font-weight:900;font-size:16px;color:#fff}
+.odd-lab{font-size:10px;color:#8a9bb0}
+.live-dot{width:8px;height:8px;background:var(--red);border-radius:50%;display:inline-block;animation:pulse 1s infinite}
+@keyframes pulse{0%{opacity:1}50%{opacity:.3}}
+.betslip-panel{background:var(--dark);border:1px solid #2a3a52;border-radius:14px;padding:14px;position:sticky;top:100px;height:fit-content;margin:12px}
+.stake-box{width:100%;background:#0a0e14;border:1px solid #2a3a52;padding:12px;border-radius:10px;color:#fff;margin:10px 0;font-size:16px}
+.btn-place{width:100%;background:var(--green);color:#000;padding:14px;border:none;border-radius:12px;font-weight:900;font-size:15px;cursor:pointer}
+.history-item{background:#0f1419;padding:10px;border-radius:10px;margin-bottom:8px;font-size:12px;display:flex;justify-content:space-between}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;place-items:center;z-index:500;padding:20px}
+.modal.active{display:grid}
+.modal-box{background:var(--card);width:100%;max-width:380px;border-radius:16px;padding:20px;border:1px solid #2a3a52}
+.input-mpesa{width:100%;padding:14px;background:#0a0e14;border:1px solid #2a3a52;border-radius:10px;color:#fff;margin:8px 0}
+.badge-demo{background:#ff3b30;color:#fff;font-size:9px;padding:2px 6px;border-radius:10px;margin-left:6px}
+.bot-nav{display:none}
+@media(max-width:900px){.bot-nav{position:fixed;bottom:0;left:0;right:0;background:var(--dark);display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #223;z-index:300} .bot-nav div{padding:10px 0;text-align:center;font-size:10px;color:#8a9bb0} .bot-nav div.active{color:var(--green)} .bot-nav i{display:block;font-size:18px;margin-bottom:2px} body{padding-bottom:60px}}
 </style>
 </head>
 <body>
 <header>
-<div class="logo">GOAL<span>WAVE</span> <span style="background:#ff3b30;color:#fff;padding:2px 6px;border-radius:8px;font-size:9px">DEMO</span></div>
-<div class="bal">KES <span id="bal">5000.00</span></div>
+<div class="logo"><i class="fa-solid fa-futbol"></i> GOAL<span>WAVE</span> <span class="badge-demo">DEMO • VIRTUAL</span></div>
+<div class="hdr-right">
+<div class="balance"><i class="fa-solid fa-wallet" style="color:var(--green)"></i> KES <span id="bal">5000.00</span></div>
+<button class="btn-sm btn-outline" onclick="openModal('loginModal')"><i class="fa-solid fa-user"></i> Login</button>
+</div>
 </header>
-<div class="container">
-<div class="box">
-<h2 style="margin-bottom:10px">Today's Matches - Virtual Money</h2>
-<div id="list"></div>
+<div class="nav-tabs" id="topTabs">
+<div class="active" onclick="switchTab('football',this)"><i class="fa-solid fa-futbol"></i> Football</div>
+<div onclick="switchTab('live',this)"><span class="live-dot"></span> Live (4)</div>
+<div onclick="switchTab('basket',this)"><i class="fa-solid fa-basketball"></i> Basketball</div>
+<div onclick="switchTab('jackpot',this)"><i class="fa-solid fa-trophy"></i> Jackpot</div>
 </div>
-<div class="box betslip">
-<h3>Bet Slip (<span id="cnt">0</span>)</h3>
-<div id="bets" style="margin-top:10px;font-size:13px;color:#8a9bb0">Click odds to add bets</div>
-<div id="ctrl" style="display:none">
-<input id="stake" class="input" type="number" value="100" min="10">
-<div style="display:flex;justify-content:space-between;margin:8px 0"><span>Total Odds:</span><b id="tOdds">1.00</b></div>
-<div style="display:flex;justify-content:space-between;margin:8px 0"><span>Possible Win:</span><b id="pWin" style="color:#00ff88">KES 0</b></div>
-<button class="btn" onclick="place()">Place Bet (DEMO)</button>
-<div id="msg" style="display:none;margin-top:10px;padding:10px;border-radius:8px;text-align:center"></div>
+<div class="main">
+<div class="content" id="contentArea"></div>
+<div class="betslip-panel" id="slipPanel">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<h3 style="font-size:15px">Bet Slip <span id="cnt" style="background:var(--green);color:#000;padding:2px 8px;border-radius:12px;font-size:11px">0</span></h3>
+<span style="font-size:11px;color:#8a9bb0;cursor:pointer" onclick="clearSlip()">Clear</span>
 </div>
-<div style="margin-top:12px;padding:8px;background:#ff3b301a;border:1px solid #ff3b30;border-radius:8px;font-size:10px;text-align:center">DEMO ONLY - No real money. Educational purposes.</div>
+<div id="bets" style="margin:12px 0;color:#8a9bb0;font-size:13px;text-align:center;padding:20px 0">Tap odds to add selections<br><small>Min 1 - Max 20</small></div>
+<div id="slipControls" style="display:none">
+<div style="display:flex;gap:8px;margin:8px 0">
+<button class="btn-sm btn-outline" style="flex:1" onclick="setStake(100)">100</button>
+<button class="btn-sm btn-outline" style="flex:1" onclick="setStake(200)">200</button>
+<button class="btn-sm btn-outline" style="flex:1" onclick="setStake(500)">500</button>
+<button class="btn-sm btn-outline" style="flex:1" onclick="setStake(1000)">1000</button>
+</div>
+<input id="stake" class="stake-box" type="number" value="100" min="20">
+<div style="display:flex;justify-content:space-between;font-size:13px;margin:6px 0"><span>Total Odds:</span><b id="tOdds">1.00</b></div>
+<div style="display:flex;justify-content:space-between;font-size:13px;margin:6px 0"><span>Bonus:</span><b style="color:var(--green)">+5%</b></div>
+<div style="display:flex;justify-content:space-between;font-size:14px;margin:10px 0;font-weight:700"><span>Possible Win:</span><b id="pWin" style="color:var(--green)">KES 0.00</b></div>
+<button class="btn-place" onclick="placeBet()">PLACE BET • DEMO</button>
+<button class="btn-sm btn-outline" style="width:100%;margin-top:8px" onclick="openModal('mpesaModal')"><i class="fa-solid fa-mobile-screen"></i> Deposit via M-Pesa (Demo)</button>
+<div id="msg" style="display:none;margin-top:10px;padding:12px;border-radius:10px;text-align:center;font-weight:700"></div>
+</div>
+<div style="margin-top:14px;padding:10px;background:#ff3b3018;border:1px solid #ff3b3033;border-radius:10px;font-size:10px;color:#ff8a80;text-align:center"><i class="fa-solid fa-triangle-exclamation"></i> DEMO PLATFORM: Virtual KES only. No real money. 18+ Educational purposes.</div>
+<div style="margin-top:12px">
+<h4 style="font-size:12px;margin-bottom:8px;color:#8a9bb0">MY BETS HISTORY</h4>
+<div id="history"></div>
+</div>
+</div>
+</div>
+<div class="bot-nav">
+<div class="active"><i class="fa-solid fa-house"></i>Home</div>
+<div onclick="switchTab('live',document.querySelectorAll('#topTabs div')[1])"><i class="fa-solid fa-tower-broadcast"></i>Live</div>
+<div><i class="fa-solid fa-receipt"></i>Betslip <span id="botCnt">0</span></div>
+<div onclick="document.getElementById('history').scrollIntoView()"><i class="fa-solid fa-clock-rotate-left"></i>My Bets</div>
+<div onclick="openModal('loginModal')"><i class="fa-solid fa-user"></i>Account</div>
+</div>
+<div class="modal" id="loginModal">
+<div class="modal-box">
+<h3 style="margin-bottom:12px"><i class="fa-solid fa-right-to-bracket"></i> Login / Register</h3>
+<input class="input-mpesa" placeholder="Phone: 07XX XXX XXX" id="phone">
+<input class="input-mpesa" type="password" placeholder="PIN (any for demo)">
+<button class="btn-place" onclick="doLogin()">Login (Demo)</button>
+<div style="text-align:center;margin-top:10px;font-size:12px;color:#8a9bb0">Demo: Use any phone, no password needed</div>
+<button class="btn-sm btn-outline" style="width:100%;margin-top:10px" onclick="closeModal('loginModal')">Close</button>
+</div>
+</div>
+<div class="modal" id="mpesaModal">
+<div class="modal-box">
+<h3 style="margin-bottom:8px;color:var(--green)">M-Pesa Deposit (DEMO)</h3>
+<div style="background:#0a0e14;padding:10px;border-radius:10px;font-size:12px;margin-bottom:8px;border:1px dashed #2a3a52">Demo Mode: No real M-Pesa will be charged.<br>Virtual balance will be added instantly.</div>
+<input class="input-mpesa" placeholder="Amount KES" type="number" id="mpesaAmt" value="1000">
+<button class="btn-place" onclick="doMpesa()">Add Virtual Balance</button>
+<button class="btn-sm btn-outline" style="width:100%;margin-top:10px" onclick="closeModal('mpesaModal')">Cancel</button>
 </div>
 </div>
 <script>
-let bal=parseFloat(localStorage.getItem('gw_bal')||'5000');
+let bal=parseFloat(localStorage.getItem('gw_bal_v3')||'5000');
+let history=JSON.parse(localStorage.getItem('gw_hist')||'[]');
 const matches=[
-{lg:'Premier League',h:'Man City',a:'Arsenal',o:{1:2.15,X:3.4,2:3.1}},
-{lg:'La Liga',h:'Real Madrid',a:'Barcelona',o:{1:2.5,X:3.6,2:2.8}},
-{lg:'Serie A',h:'Inter',a:'AC Milan',o:{1:2.05,X:3.3,2:3.75}},
-{lg:'Kenya PL',h:'Gor Mahia',a:'AFC Leopards',o:{1:2.2,X:2.9,2:3.2}},
-{lg:'UCL',h:'PSG',a:'Bayern',o:{1:2.85,X:3.5,2:2.4}},
-{lg:'Bundesliga',h:'Dortmund',a:'Leverkusen',o:{1:2.3,X:3.4,2:2.95}},
+{lg:'Premier League • 21:30',live:false,h:'Man United',a:'Arsenal',score:'',o:{1:1.95,X:3.40,2:3.60}},
+{lg:'La Liga • 21:00',live:true,h:'Real Madrid',a:'Barcelona',score:'1-0',o:{1:2.50,X:3.60,2:2.80}},
+{lg:'Serie A • 23:00',live:false,h:'Inter Milan',a:'AC Milan',o:{1:2.05,X:3.30,2:3.75}},
+{lg:'Kenya PL • 15:00',live:true,h:'Gor Mahia',a:'AFC Leopards',score:'0-0',o:{1:2.20,X:2.90,2:3.20}},
+{lg:'UCL • 22:00',live:false,h:'PSG',a:'Bayern Munich',o:{1:2.85,X:3.50,2:2.40}},
+{lg:'Bundesliga • 19:30',live:false,h:'Dortmund',a:'Leverkusen',o:{1:2.30,X:3.40,2:2.95}},
+{lg:'EPL • 18:30',live:true,h:'Chelsea',a:'Liverpool',score:'2-1',o:{1:2.10,X:3.30,2:3.20}},
 ];
 let slip=[];
-function render(){
+function renderMatches(){
 document.getElementById('bal').innerText=bal.toFixed(2);
-document.getElementById('list').innerHTML=matches.map((m,i)=>`<div class="match"><div><div class="small">${m.lg}</div><div style="font-weight:700;font-size:13px">${m.h} vs ${m.a}</div></div><div class="odd"><div onclick="add(${i},'1',${m.o[1]},'${m.h}')">${m.o[1]}<br><span class="small">1</span></div><div onclick="add(${i},'X',${m.o.X},'Draw')">${m.o.X}<br><span class="small">X</span></div><div onclick="add(${i},'2',${m.o[2]},'${m.a}')">${m.o[2]}<br><span class="small">2</span></div></div></div>`).join('');
+let html=matches.map((m,i)=>`<div class="card">
+<div class="league"><span>${m.live?'<span class="live-dot"></span> LIVE • ':''}${m.lg}</span><span style="color:var(--green)">${m.score||'VS'}</span></div>
+<div class="match-row"><div class="team"><i class="fa-solid fa-shield" style="color:#5da"></i> ${m.h}</div><div style="font-size:11px;color:#8a9bb0">vs</div><div class="team">${m.a} <i class="fa-solid fa-shield" style="color:#a55"></i></div></div>
+<div class="odds-grid">
+<div class="odd-box" id="odd_${i}_1" onclick="add(${i},'1',${m.o[1]},'${m.h}')"><div class="odd-val">${m.o[1]}</div><div class="odd-lab">1 • Home</div></div>
+<div class="odd-box" id="odd_${i}_X" onclick="add(${i},'X',${m.o.X},'Draw')"><div class="odd-val">${m.o.X}</div><div class="odd-lab">X • Draw</div></div>
+<div class="odd-box" id="odd_${i}_2" onclick="add(${i},'2',${m.o[2]},'${m.a}')"><div class="odd-val">${m.o[2]}</div><div class="odd-lab">2 • Away</div></div>
+</div>
+</div>`).join('');
+document.getElementById('contentArea').innerHTML=html;
+renderHistory();
 }
 function add(i,t,od,team){
-if(slip.find(s=>s.i===i)){alert('One bet per match');return}
-slip.push({i,t,od,team,match:matches[i].h+' vs '+matches[i].a}); show();
+if(slip.find(s=>s.i===i)){alert('One selection per match');return}
+slip.push({i,t,od,team,match:matches[i].h+' vs '+matches[i].a,time:new Date().toLocaleTimeString()});
+document.getElementById('odd_'+i+'_'+t)?.classList.add('sel');
+showSlip();
 }
-function show(){
-document.getElementById('cnt').innerText=slip.length;
-if(!slip.length){document.getElementById('bets').innerHTML='Click odds to add bets';document.getElementById('ctrl').style.display='none';return}
-document.getElementById('ctrl').style.display='block';
-document.getElementById('bets').innerHTML=slip.map(s=>`<div style="background:#242f3e;padding:8px;border-radius:8px;margin-bottom:6px;display:flex;justify-content:space-between">${s.match}<br><small>${s.t}-${s.team} @${s.od}</small><span onclick="rem('${s.i}_${s.t}')" style="color:#ff3b30;cursor:pointer">x</span></div>`).join('');
+function showSlip(){
+let cnt=document.getElementById('cnt');cnt.innerText=slip.length;document.getElementById('botCnt').innerText=slip.length;
+if(!slip.length){document.getElementById('bets').innerHTML='<div style="text-align:center;color:#8a9bb0">Tap odds to add selections<br><small>Min 1 - Max 20</small></div>';document.getElementById('slipControls').style.display='none';return}
+document.getElementById('slipControls').style.display='block';
+document.getElementById('bets').innerHTML=slip.map((s,k)=>`<div class="history-item"><div><b>${s.match}</b><br><small>${s.t} - ${s.team} @ ${s.od}</small></div><span onclick="rem(${k},${s.i},'${s.t}')" style="color:#ff3b30;cursor:pointer"><i class="fa-solid fa-trash"></i></span></div>`).join('');
 upd();
 }
-function rem(id){let [mi]=id.split('_');slip=slip.filter(s=>!(s.i==mi));show()}
-function upd(){let tot=slip.reduce((a,b)=>a*b.od,1);let st=parseFloat(document.getElementById('stake').value||0);document.getElementById('tOdds').innerText=tot.toFixed(2);document.getElementById('pWin').innerText='KES '+(tot*st).toFixed(2)}
-document.getElementById('stake').addEventListener('input',upd);
-function place(){
+function rem(k,i,t){slip.splice(k,1);document.getElementById('odd_'+i+'_'+t)?.classList.remove('sel');showSlip();}
+function clearSlip(){slip.forEach(s=>document.getElementById('odd_'+s.i+'_'+s.t)?.classList.remove('sel'));slip=[];showSlip();}
+function setStake(v){document.getElementById('stake').value=v;upd();}
+function upd(){let tot=slip.reduce((a,b)=>a*b.od,1);let st=parseFloat(document.getElementById('stake').value||0);document.getElementById('tOdds').innerText=tot.toFixed(2);document.getElementById('pWin').innerText='KES '+(tot*st*1.05).toFixed(2);}
+document.getElementById('stake')?.addEventListener('input',upd);
+function placeBet(){
 let st=parseFloat(document.getElementById('stake').value||0);
-if(st<10||st>bal){alert('Check stake/balance');return}
-bal-=st;let tot=slip.reduce((a,b)=>a*b.od,1);let winAmt=tot*st;let win=Math.random()>0.45;
+if(st<20){alert('Min stake KES 20');return}
+if(st>bal){alert('Low balance - Deposit demo funds');openModal('mpesaModal');return}
+bal-=st;let tot=slip.reduce((a,b)=>a*b.od,1);let winAmt=tot*st*1.05;let win=Math.random()>0.45;
+let rec={id:Date.now(),stake:st,odds:tot,win:win,winAmt:win?winAmt:0,time:new Date().toLocaleString(),matches:slip.map(s=>s.match).join(', ')};
+history.unshift(rec);if(history.length>10)history.pop();
+localStorage.setItem('gw_hist',JSON.stringify(history));
 let el=document.getElementById('msg');el.style.display='block';
-if(win){bal+=winAmt;el.style.background='#00ff8822';el.style.border='1px solid #00ff88';el.innerHTML='WON! +KES '+winAmt.toFixed(2);}else{el.style.background='#ff3b3022';el.style.border='1px solid #ff3b30';el.innerHTML='LOST KES '+st+' - Try again (demo)';}
-localStorage.setItem('gw_bal',bal);document.getElementById('bal').innerText=bal.toFixed(2);slip=[];show();setTimeout(()=>el.style.display='none',3000);
+if(win){bal+=winAmt;el.style.background='#00ff8822';el.style.border='1px solid #00ff88';el.style.color='#00ff88';el.innerHTML='🎉 WON! +KES '+winAmt.toFixed(2);}else{el.style.background='#ff3b3022';el.style.border='1px solid #ff3b30';el.style.color='#ff8a80';el.innerHTML='😢 Lost KES '+st+' - Demo loss';}
+localStorage.setItem('gw_bal_v3',bal);document.getElementById('bal').innerText=bal.toFixed(2);
+clearSlip();renderHistory();
+setTimeout(()=>el.style.display='none',3500);
 }
-render();
+function renderHistory(){
+let h=document.getElementById('history');
+if(!history.length){h.innerHTML='<div style="color:#8a9bb0;font-size:11px;text-align:center;padding:10px">No bets yet</div>';return}
+h.innerHTML=history.map(r=>`<div class="history-item"><div><b>${r.win?'✅ WON':'❌ LOST'} KES ${r.stake}</b><br><small>${r.matches.slice(0,30)}... • ${r.time}</small></div><div style="text-align:right"><small>${r.odds.toFixed(2)} odds</small><br><b style="color:${r.win?'var(--green)':'#8a9bb0'}">${r.win?'KES '+r.winAmt.toFixed(0):'-'+r.stake}</b></div></div>`).join('');
+}
+function switchTab(tab,el){
+document.querySelectorAll('.nav-tabs div').forEach(d=>d.classList.remove('active'));el.classList.add('active');
+if(tab==='live'){let liveMatches=matches.filter(m=>m.live);if(!liveMatches.length)alert('Demo: 3 live matches in Football tab marked LIVE');else{document.getElementById('contentArea').scrollIntoView();}}
+if(tab==='basket'){document.getElementById('contentArea').innerHTML='<div class="card" style="text-align:center;padding:40px">🏀 Basketball coming soon<br><small style="color:#8a9bb0">Demo: Football only for now</small></div>';return}
+if(tab==='jackpot'){document.getElementById('contentArea').innerHTML='<div class="card" style="text-align:center;padding:40px">🏆 Jackpot KES 10M (DEMO)<br><small style="color:#8a9bb0">Pick 17 games - Virtual money only</small><br><button class="btn-sm btn-green" style="margin-top:12px" onclick="renderMatches()">Back to Football</button></div>';return}
+if(tab==='football'||tab==='live')renderMatches();
+}
+function openModal(id){document.getElementById(id).classList.add('active')}
+function closeModal(id){document.getElementById(id).classList.remove('active')}
+function doLogin(){let ph=document.getElementById('phone').value;if(!ph){alert('Enter phone');return}localStorage.setItem('gw_phone',ph);closeModal('loginModal');alert('Welcome '+ph+'! Demo login success - KES '+bal.toFixed(2)+' virtual balance');}
+function doMpesa(){let amt=parseFloat(document.getElementById('mpesaAmt').value||0);if(amt<10){alert('Min KES 10');return}bal+=amt;localStorage.setItem('gw_bal_v3',bal);document.getElementById('bal').innerText=bal.toFixed(2);closeModal('mpesaModal');alert('DEMO: Added KES '+amt+' virtual! New balance: KES '+bal.toFixed(2));renderHistory();}
+renderMatches();
 </script>
 </body>
 </html>
