@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GOALWAVE Football</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #071a16;
+            color: white;
+        }
+
+        header {
+            background: #102b21;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #b8f34a;
+        }
+
+        nav {
+            background: #183a2c;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 25px auto;
+            padding: 15px;
+        }
+
+        .match {
+            background: #102b21;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        .odds {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            background: #b8f34a;
+            color: #071a16;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #d3ff80;
+        }
+
+        #slip {
+            background: #183a2c;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #b7c7be;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>GOALWAVE</h1>
+    <p>Your football world</p>
+</header>
+
+<nav>
+    <a href="#matches">Matches</a>
+    <a href="#slip">Bet Slip</a>
+</nav>
+
+<div class="container">
+
+    <h2 id="matches">Football Matches</h2>
+
+    <div class="match">
+        <h3>Harbour FC vs Lions United</h3>
+        <p>Sample match · Demo odds</p>
+
+        <div class="odds">
+            <button onclick="addBet('Harbour FC', 2.10)">
+                1: 2.10
+            </button>
+
+            <button onclick="addBet('Draw', 3.25)">
+                X: 3.25
+            </button>
+
+            <button onclick="addBet('Lions United', 3.40)">
+                2: 3.40
+            </button>
+        </div>
+    </div>
+
+    <div class="match">
+        <h3>Blue City vs Red Athletic</h3>
+        <p>Sample match · Demo odds</p>
+
+        <div class="odds">
+            <button onclick="addBet('Blue City', 1.85)">
+                1: 1.85
+            </button>
+
+            <button onclick="addBet('Draw', 3.50)">
+                X: 3.50
+            </button>
+
+            <button onclick="addBet('Red Athletic', 4.10)">
+                2: 4.10
+            </button>
+        </div>
+    </div>
+
+    <div id="slip">
+        <h2>Bet Slip</h2>
+
+        <p id="selection">
+            Select an outcome above.
+        </p>
+
+        <label for="stake">Virtual stake (KSh):</label>
+
+        <input
+            id="stake"
+            type="number"
+            min="1"
+            value="100"
+        >
+
+        <p id="result">Potential return: KSh 0</p>
+
+        <button onclick="calculateReturn()">
+            Calculate Return
+        </button>
+    </div>
+
+</div>
+
+<footer>
+    GOALWAVE DEMO | Virtual money only
+</footer>
+
+<script>
+    let selectedOdds = 0;
+    let selectedTeam = "";
+
+    function addBet(team, odds) {
+        selectedTeam = team;
+        selectedOdds = odds;
+
+        document.getElementById("selection").textContent =
+            "Selected: " + team + " | Odds: " + odds;
+
+        calculateReturn();
+    }
+
+    function calculateReturn() {
+        const stake = Number(
+            document.getElementById("stake").value
+        );
+
+        if (
+            selectedOdds <= 0 ||
+            !Number.isFinite(stake) ||
+            stake <= 0
+        ) {
+            document.getElementById("result").textContent =
+                "Choose an outcome and enter a valid stake.";
+            return;
+        }
+
+        const potentialReturn = stake * selectedOdds;
+
+        document.getElementById("result").textContent =
+            "Potential return: KSh " +
+            potentialReturn.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
