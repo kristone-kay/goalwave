@@ -3,197 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GOALWAVE - Kenya's Demo Betting Platform</title>
+<title>GOALWAVE ULTRA - Real Fixtures 2026/27 | Demo Betting + Earn</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',system-ui,sans-serif}
-body{background:#0a0e14;color:#fff;overflow-x:hidden}
-:root{--green:#00ff88;--dark:#121a26;--card:#1c2736;--red:#ff3b30}
-header{background:var(--dark);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;border-bottom:1px solid #223}
-.logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:22px;color:var(--green)}
-.logo i{background:var(--green);color:#000;width:32px;height:32px;border-radius:8px;display:grid;place-items:center}
-.logo span{color:#fff}
-.hdr-right{display:flex;gap:8px;align-items:center}
-.btn-sm{padding:6px 12px;border-radius:20px;border:none;font-weight:700;font-size:12px;cursor:pointer}
-.btn-green{background:var(--green);color:#000}
-.btn-outline{background:transparent;border:1px solid #3a4a60;color:#fff}
-.balance{font-size:13px;background:var(--card);padding:6px 10px;border-radius:20px;border:1px solid var(--green)}
-.nav-tabs{display:flex;gap:0;background:var(--dark);overflow-x:auto;position:sticky;top:52px;z-index:99}
-.nav-tabs div{padding:12px 16px;white-space:nowrap;font-size:13px;font-weight:700;color:#8a9bb0;cursor:pointer;border-bottom:3px solid transparent}
-.nav-tabs div.active{color:var(--green);border-bottom-color:var(--green)}
-.main{display:grid;grid-template-columns:1fr 360px;max-width:1300px;margin:0 auto}
-@media(max-width:900px){.main{grid-template-columns:1fr} .betslip-panel{position:fixed;bottom:0;left:0;right:0;max-height:60vh;z-index:200;border-radius:18px 18px 0 0}}
-.content{padding:12px}
-.card{background:var(--card);border-radius:14px;padding:12px;margin-bottom:12px;border:1px solid #2a3a52}
-.league{font-size:11px;color:#8a9bb0;text-transform:uppercase;letter-spacing:0.5px;display:flex;justify-content:space-between}
-.match-row{display:flex;justify-content:space-between;align-items:center;margin:10px 0}
-.team{font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px}
-.odds-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.odd-box{background:#0f1419;border:1px solid #2a3a52;border-radius:10px;padding:10px;text-align:center;cursor:pointer;transition:.2s}
-.odd-box:hover,.odd-box.sel{border-color:var(--green);background:rgba(0,255,136,.12)}
-.odd-val{font-weight:900;font-size:16px;color:#fff}
-.odd-lab{font-size:10px;color:#8a9bb0}
-.live-dot{width:8px;height:8px;background:var(--red);border-radius:50%;display:inline-block;animation:pulse 1s infinite}
-@keyframes pulse{0%{opacity:1}50%{opacity:.3}}
-.betslip-panel{background:var(--dark);border:1px solid #2a3a52;border-radius:14px;padding:14px;position:sticky;top:100px;height:fit-content;margin:12px}
-.stake-box{width:100%;background:#0a0e14;border:1px solid #2a3a52;padding:12px;border-radius:10px;color:#fff;margin:10px 0;font-size:16px}
-.btn-place{width:100%;background:var(--green);color:#000;padding:14px;border:none;border-radius:12px;font-weight:900;font-size:15px;cursor:pointer}
-.history-item{background:#0f1419;padding:10px;border-radius:10px;margin-bottom:8px;font-size:12px;display:flex;justify-content:space-between}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;place-items:center;z-index:500;padding:20px}
-.modal.active{display:grid}
-.modal-box{background:var(--card);width:100%;max-width:380px;border-radius:16px;padding:20px;border:1px solid #2a3a52}
-.input-mpesa{width:100%;padding:14px;background:#0a0e14;border:1px solid #2a3a52;border-radius:10px;color:#fff;margin:8px 0}
-.badge-demo{background:#ff3b30;color:#fff;font-size:9px;padding:2px 6px;border-radius:10px;margin-left:6px}
-.bot-nav{display:none}
-@media(max-width:900px){.bot-nav{position:fixed;bottom:0;left:0;right:0;background:var(--dark);display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #223;z-index:300} .bot-nav div{padding:10px 0;text-align:center;font-size:10px;color:#8a9bb0} .bot-nav div.active{color:var(--green)} .bot-nav i{display:block;font-size:18px;margin-bottom:2px} body{padding-bottom:60px}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
+body{background:#070b12;color:#fff}
+:root{--green:#00ff88;--dark:#0f1826;--card:#162032;--red:#ff3b30;--orange:#ff9f0a}
+header{background:var(--dark);padding:10px 12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;border-bottom:2px solid var(--green)}
+.logo{font-weight:900;font-size:22px;color:var(--green);display:flex;align-items:center;gap:8px}
+.logo b{color:#fff}
+.bal{background:var(--green);color:#000;padding:6px 12px;border-radius:20px;font-weight:800;font-size:12px}
+.top-alert{background:linear-gradient(90deg,#ff3b30,#ff9f0a);color:#fff;padding:8px;text-align:center;font-size:11px;font-weight:700}
+.nav{display:flex;background:var(--dark);overflow-x:auto;position:sticky;top:50px;z-index:99}
+.nav div{padding:12px 14px;font-size:12px;font-weight:700;color:#8a9bb0;white-space:nowrap;cursor:pointer;border-bottom:3px solid transparent}
+.nav div.active{color:var(--green);border-bottom-color:var(--green)}
+.grid{display:grid;grid-template-columns:1fr 360px;max-width:1300px;margin:auto}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.main{padding:10px}
+.card{background:var(--card);border:1px solid #22344d;border-radius:14px;padding:12px;margin-bottom:12px;position:relative;overflow:hidden}
+.card.live{border-left:4px solid var(--red)}
+.odds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.odd{background:#0a0e14;border:1px solid #2a3a52;border-radius:10px;padding:10px;text-align:center;cursor:pointer}
+.odd:hover{border-color:var(--green);background:rgba(0,255,136,.1)}
+.odd.sel{border-color:var(--green);background:rgba(0,255,136,.2)}
+.odd b{display:block;font-size:16px}
+.odd span{font-size:10px;color:#8a9bb0}
+.affil{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.affil a{padding:8px;border-radius:8px;text-align:center;font-size:11px;font-weight:800;text-decoration:none;color:#000}
+.affil .betika{background:#ffe600}
+.affil .sportpesa{background:#00a3ff;color:#fff}
+.slip{background:var(--dark);border:1px solid #22344d;border-radius:14px;padding:12px;margin:10px;position:sticky;top:95px;height:fit-content}
+@media(max-width:900px){.slip{position:fixed;bottom:0;left:0;right:0;top:auto;max-height:65vh;overflow-y:auto;border-radius:18px 18px 0 0;z-index:200}}
+.btn{width:100%;background:var(--green);color:#000;border:none;padding:13px;border-radius:12px;font-weight:900;cursor:pointer;margin:6px 0}
+.btn2{width:100%;background:transparent;border:1px solid #2a3a52;color:#fff;padding:10px;border-radius:10px;cursor:pointer;font-size:12px;margin:4px 0}
+.inp{width:100%;background:#070b12;border:1px solid #2a3a52;padding:12px;border-radius:10px;color:#fff;margin:6px 0}
+.earn-box{background:linear-gradient(135deg,#00ff88 0%,#00cc6a 100%);color:#000;border-radius:12px;padding:12px;margin:10px 0}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;place-items:center;z-index:600;padding:20px}
+.modal.on{display:grid}
+.modal-box{background:var(--card);max-width:400px;width:100%;border-radius:16px;padding:18px;border:1px solid #2a3a52}
+.tag{font-size:9px;padding:2px 6px;border-radius:10px;color:#fff;margin-left:6px}
+.tag-live{background:var(--red)}
+.tag-kenya{background:var(--green);color:#000}
 </style>
 </head>
 <body>
+<div class="top-alert">🔥 REAL FIXTURES THIS WEEKEND 31 Oct - 2 Nov 2026 | Chelsea vs Man United + Liverpool vs Arsenal | DEMO BETS - VIRTUAL KES</div>
 <header>
-<div class="logo"><i class="fa-solid fa-futbol"></i> GOAL<span>WAVE</span> <span class="badge-demo">DEMO • VIRTUAL</span></div>
-<div class="hdr-right">
-<div class="balance"><i class="fa-solid fa-wallet" style="color:var(--green)"></i> KES <span id="bal">5000.00</span></div>
-<button class="btn-sm btn-outline" onclick="openModal('loginModal')"><i class="fa-solid fa-user"></i> Login</button>
+<div class="logo"><i class="fa-solid fa-futbol" style="background:var(--green);color:#000;width:32px;height:32px;display:grid;place-items:center;border-radius:8px"></i> GOAL<b>WAVE</b> <span style="background:var(--red);color:#fff;font-size:8px;padding:2px 6px;border-radius:10px">ULTRA • REAL FIXTURES</span></div>
+<div style="display:flex;gap:8px;align-items:center">
+<div class="bal"><i class="fa-solid fa-wallet"></i> KES <span id="bal">5000</span></div>
+<button onclick="openM('login')" style="background:transparent;border:1px solid #3a4a60;color:#fff;padding:6px 10px;border-radius:20px;font-size:11px;cursor:pointer">Login</button>
 </div>
 </header>
-<div class="nav-tabs" id="topTabs">
-<div class="active" onclick="switchTab('football',this)"><i class="fa-solid fa-futbol"></i> Football</div>
-<div onclick="switchTab('live',this)"><span class="live-dot"></span> Live (4)</div>
-<div onclick="switchTab('basket',this)"><i class="fa-solid fa-basketball"></i> Basketball</div>
-<div onclick="switchTab('jackpot',this)"><i class="fa-solid fa-trophy"></i> Jackpot</div>
+<div class="nav" id="nav">
+<div class="active" onclick="filterGames('all',this)">🔥 All Real Games</div>
+<div onclick="filterGames('today',this)">⚽ Today 29 Oct</div>
+<div onclick="filterGames('weekend',this)">🏆 Weekend Big Games</div>
+<div onclick="filterGames('kenya',this)">🇰🇪 Kenya PL</div>
+<div onclick="filterGames('earn',this)">💰 How I Earn</div>
 </div>
-<div class="main">
-<div class="content" id="contentArea"></div>
-<div class="betslip-panel" id="slipPanel">
-<div style="display:flex;justify-content:space-between;align-items:center">
-<h3 style="font-size:15px">Bet Slip <span id="cnt" style="background:var(--green);color:#000;padding:2px 8px;border-radius:12px;font-size:11px">0</span></h3>
-<span style="font-size:11px;color:#8a9bb0;cursor:pointer" onclick="clearSlip()">Clear</span>
+<div class="grid">
+<div class="main" id="main"></div>
+<div class="slip">
+<div style="display:flex;justify-content:space-between"><h3 style="font-size:14px">Bet Slip <span id="cnt" style="background:var(--green);color:#000;padding:2px 7px;border-radius:12px;font-size:11px">0</span></h3><span style="font-size:11px;color:#8a9bb0;cursor:pointer" onclick="clearAll()">Clear</span></div>
+<div id="bets" style="text-align:center;padding:20px 0;color:#8a9bb0;font-size:13px">Tap odds to add real fixtures<br><small>Real 2026/27 season</small></div>
+<div id="ctrl" style="display:none">
+<div style="display:flex;gap:6px">
+<button class="btn2" style="flex:1" onclick="setS(100)">100</button>
+<button class="btn2" style="flex:1" onclick="setS(500)">500</button>
+<button class="btn2" style="flex:1" onclick="setS(1000)">1K</button>
 </div>
-<div id="bets" style="margin:12px 0;color:#8a9bb0;font-size:13px;text-align:center;padding:20px 0">Tap odds to add selections<br><small>Min 1 - Max 20</small></div>
-<div id="slipControls" style="display:none">
-<div style="display:flex;gap:8px;margin:8px 0">
-<button class="btn-sm btn-outline" style="flex:1" onclick="setStake(100)">100</button>
-<button class="btn-sm btn-outline" style="flex:1" onclick="setStake(200)">200</button>
-<button class="btn-sm btn-outline" style="flex:1" onclick="setStake(500)">500</button>
-<button class="btn-sm btn-outline" style="flex:1" onclick="setStake(1000)">1000</button>
+<input id="stake" class="inp" type="number" value="100" min="20">
+<div style="display:flex;justify-content:space-between;font-size:12px;margin:5px 0"><span>Odds:</span><b id="tOdd">1.00</b><span>Bonus 5%:</span><b id="bonus">0</b></div>
+<div style="display:flex;justify-content:space-between;font-weight:800;margin:8px 0"><span>Possible Win:</span><b id="pWin" style="color:var(--green)">KES 0</b></div>
+<button class="btn" onclick="place()">PLACE DEMO BET</button>
+<button class="btn2" onclick="openM('mpesa')">+ Add Virtual Balance (M-Pesa Demo)</button>
+<div id="msg" style="display:none;padding:10px;border-radius:10px;text-align:center;margin-top:8px;font-weight:800"></div>
 </div>
-<input id="stake" class="stake-box" type="number" value="100" min="20">
-<div style="display:flex;justify-content:space-between;font-size:13px;margin:6px 0"><span>Total Odds:</span><b id="tOdds">1.00</b></div>
-<div style="display:flex;justify-content:space-between;font-size:13px;margin:6px 0"><span>Bonus:</span><b style="color:var(--green)">+5%</b></div>
-<div style="display:flex;justify-content:space-between;font-size:14px;margin:10px 0;font-weight:700"><span>Possible Win:</span><b id="pWin" style="color:var(--green)">KES 0.00</b></div>
-<button class="btn-place" onclick="placeBet()">PLACE BET • DEMO</button>
-<button class="btn-sm btn-outline" style="width:100%;margin-top:8px" onclick="openModal('mpesaModal')"><i class="fa-solid fa-mobile-screen"></i> Deposit via M-Pesa (Demo)</button>
-<div id="msg" style="display:none;margin-top:10px;padding:12px;border-radius:10px;text-align:center;font-weight:700"></div>
+<div class="earn-box">
+<h4>💰 How Kristone Earns from Goalwave (Legal)</h4>
+<p>1. <b>Affiliate:</b> When users click Betika/SportPesa links below, you earn 25% commission.</p>
+<p>2. <b>VIP Tips:</b> Sell predictions KES 99/week via M-Pesa Till.</p>
+<p>3. <b>Ads:</b> Add Google AdSense - 10K views = ~KES 1,500.</p>
+<button class="btn2" style="background:#000;color:var(--green);border:none;font-weight:800" onclick="openM('earn')">Setup Your Earning →</button>
 </div>
-<div style="margin-top:14px;padding:10px;background:#ff3b3018;border:1px solid #ff3b3033;border-radius:10px;font-size:10px;color:#ff8a80;text-align:center"><i class="fa-solid fa-triangle-exclamation"></i> DEMO PLATFORM: Virtual KES only. No real money. 18+ Educational purposes.</div>
-<div style="margin-top:12px">
-<h4 style="font-size:12px;margin-bottom:8px;color:#8a9bb0">MY BETS HISTORY</h4>
-<div id="history"></div>
-</div>
-</div>
-</div>
-<div class="bot-nav">
-<div class="active"><i class="fa-solid fa-house"></i>Home</div>
-<div onclick="switchTab('live',document.querySelectorAll('#topTabs div')[1])"><i class="fa-solid fa-tower-broadcast"></i>Live</div>
-<div><i class="fa-solid fa-receipt"></i>Betslip <span id="botCnt">0</span></div>
-<div onclick="document.getElementById('history').scrollIntoView()"><i class="fa-solid fa-clock-rotate-left"></i>My Bets</div>
-<div onclick="openModal('loginModal')"><i class="fa-solid fa-user"></i>Account</div>
-</div>
-<div class="modal" id="loginModal">
-<div class="modal-box">
-<h3 style="margin-bottom:12px"><i class="fa-solid fa-right-to-bracket"></i> Login / Register</h3>
-<input class="input-mpesa" placeholder="Phone: 07XX XXX XXX" id="phone">
-<input class="input-mpesa" type="password" placeholder="PIN (any for demo)">
-<button class="btn-place" onclick="doLogin()">Login (Demo)</button>
-<div style="text-align:center;margin-top:10px;font-size:12px;color:#8a9bb0">Demo: Use any phone, no password needed</div>
-<button class="btn-sm btn-outline" style="width:100%;margin-top:10px" onclick="closeModal('loginModal')">Close</button>
+<div style="margin-top:10px;padding:10px;background:#ff3b3015;border:1px solid #ff3b3030;border-radius:10px;font-size:10px;color:#ff8a80;text-align:center">⚠️ DEMO ONLY: Virtual KES. To handle REAL money you need GRA licence KES 50M+. This demo keeps you safe & legal.</div>
+<div style="margin-top:10px"><h4 style="font-size:11px;color:#8a9bb0">MY BETS HISTORY</h4><div id="hist"></div></div>
 </div>
 </div>
-<div class="modal" id="mpesaModal">
-<div class="modal-box">
-<h3 style="margin-bottom:8px;color:var(--green)">M-Pesa Deposit (DEMO)</h3>
-<div style="background:#0a0e14;padding:10px;border-radius:10px;font-size:12px;margin-bottom:8px;border:1px dashed #2a3a52">Demo Mode: No real M-Pesa will be charged.<br>Virtual balance will be added instantly.</div>
-<input class="input-mpesa" placeholder="Amount KES" type="number" id="mpesaAmt" value="1000">
-<button class="btn-place" onclick="doMpesa()">Add Virtual Balance</button>
-<button class="btn-sm btn-outline" style="width:100%;margin-top:10px" onclick="closeModal('mpesaModal')">Cancel</button>
-</div>
-</div>
+<div class="modal" id="login"><div class="modal-box"><h3>Login / Register (Demo)</h3><input id="phone" class="inp" placeholder="07XX XXX XXX"><input class="inp" type="password" placeholder="PIN (any)"><button class="btn" onclick="doLogin()">Login</button><button class="btn2" onclick="closeM('login')">Close</button></div></div>
+<div class="modal" id="mpesa"><div class="modal-box"><h3 style="color:var(--green)">M-Pesa Virtual Deposit</h3><p style="font-size:11px;color:#8a9bb0;margin:6px 0">No real money charged. Adds virtual balance for demo.</p><input id="mpAmt" class="inp" type="number" value="1000"><button class="btn" onclick="doDep()">Add KES (Virtual)</button><button class="btn2" onclick="closeM('mpesa')">Cancel</button></div></div>
+<div class="modal" id="earn"><div class="modal-box"><h3 style="color:var(--green)">💰 Make Goalwave Pay You</h3><div style="font-size:12px;line-height:1.5;margin:10px 0"><b>Step 1: Affiliate Links</b><br>• Register on Betika Affiliate: affiliates.betika.com<br>• Get your link: betika.com/?ref=YOURCODE<br>• Replace YOURCODE in code - you earn per bet!<br><br><b>Step 2: VIP Tips M-Pesa</b><br>• Get M-Pesa Till from Safaricom<br>• Create WhatsApp group: Goalwave VIP<br>• Charge 99 bob/week, send 3 sure predictions daily<br><br><b>Step 3: Google AdSense</b><br>• Apply at google.com/adsense with your goalwave link<br>• Add ad code, earn per 1000 views<br><br><b>Legal:</b> Keep bets VIRTUAL. Earn from affiliates/tips/ads, not from taking bets. That needs GRA licence 50M.</div><button class="btn" onclick="closeM('earn')">Got it!</button></div></div>
 <script>
-let bal=parseFloat(localStorage.getItem('gw_bal_v3')||'5000');
-let history=JSON.parse(localStorage.getItem('gw_hist')||'[]');
-const matches=[
-{lg:'Premier League • 21:30',live:false,h:'Man United',a:'Arsenal',score:'',o:{1:1.95,X:3.40,2:3.60}},
-{lg:'La Liga • 21:00',live:true,h:'Real Madrid',a:'Barcelona',score:'1-0',o:{1:2.50,X:3.60,2:2.80}},
-{lg:'Serie A • 23:00',live:false,h:'Inter Milan',a:'AC Milan',o:{1:2.05,X:3.30,2:3.75}},
-{lg:'Kenya PL • 15:00',live:true,h:'Gor Mahia',a:'AFC Leopards',score:'0-0',o:{1:2.20,X:2.90,2:3.20}},
-{lg:'UCL • 22:00',live:false,h:'PSG',a:'Bayern Munich',o:{1:2.85,X:3.50,2:2.40}},
-{lg:'Bundesliga • 19:30',live:false,h:'Dortmund',a:'Leverkusen',o:{1:2.30,X:3.40,2:2.95}},
-{lg:'EPL • 18:30',live:true,h:'Chelsea',a:'Liverpool',score:'2-1',o:{1:2.10,X:3.30,2:3.20}},
-];
+let bal=parseFloat(localStorage.getItem('gw_ultra_bal')||'5000');
+let hist=JSON.parse(localStorage.getItem('gw_ultra_hist')||'[]');
 let slip=[];
-function renderMatches(){
-document.getElementById('bal').innerText=bal.toFixed(2);
-let html=matches.map((m,i)=>`<div class="card">
-<div class="league"><span>${m.live?'<span class="live-dot"></span> LIVE • ':''}${m.lg}</span><span style="color:var(--green)">${m.score||'VS'}</span></div>
-<div class="match-row"><div class="team"><i class="fa-solid fa-shield" style="color:#5da"></i> ${m.h}</div><div style="font-size:11px;color:#8a9bb0">vs</div><div class="team">${m.a} <i class="fa-solid fa-shield" style="color:#a55"></i></div></div>
-<div class="odds-grid">
-<div class="odd-box" id="odd_${i}_1" onclick="add(${i},'1',${m.o[1]},'${m.h}')"><div class="odd-val">${m.o[1]}</div><div class="odd-lab">1 • Home</div></div>
-<div class="odd-box" id="odd_${i}_X" onclick="add(${i},'X',${m.o.X},'Draw')"><div class="odd-val">${m.o.X}</div><div class="odd-lab">X • Draw</div></div>
-<div class="odd-box" id="odd_${i}_2" onclick="add(${i},'2',${m.o[2]},'${m.a}')"><div class="odd-val">${m.o[2]}</div><div class="odd-lab">2 • Away</div></div>
-</div>
-</div>`).join('');
-document.getElementById('contentArea').innerHTML=html;
-renderHistory();
+const realFixtures=[
+{cat:'today',league:'Kenya PL • Today 29 Oct 3:00 PM EAT',h:'Mathare United',a:'Tusker FC',time:'LIVE TODAY',live:true,score:'',o:{1:2.90,X:3.10,2:2.40},tag:'KENYA',note:'Real fixture today!'},
+{cat:'today',league:'Kenya PL • Today 29 Oct 4:00 PM EAT',h:'TRA United',a:'Geita Gold',time:'LIVE TODAY',live:true,score:'',o:{1:2.20,X:3.00,2:3.10},tag:'KENYA',note:'Real fixture today!'},
+{cat:'today',league:'Serie A • Today 29 Oct',h:'Fiorentina',a:'Atalanta',time:'Tonight 9:45 PM',live:false,o:{1:2.60,X:3.40,2:2.70},tag:'TODAY'},
+{cat:'today',league:'Serie A • Today 29 Oct',h:'Frosinone',a:'Lecce',time:'Tonight 7:30 PM',live:false,o:{1:2.10,X:3.20,2:3.50},tag:'TODAY'},
+{cat:'weekend',league:'Premier League • Sat 31 Oct 3:30 PM EAT',h:'Chelsea',a:'Man United',time:'Sat 15:30',live:false,o:{1:2.20,X:3.50,2:3.10},tag:'WEEKEND BIG',note:'🔥 Big Match!'},
+{cat:'weekend',league:'Premier League • Sat 31 Oct 6:00 PM EAT',h:'Man City',a:'Brighton',time:'Sat 18:00',live:false,o:{1:1.55,X:4.20,2:5.50},tag:'WEEKEND BIG'},
+{cat:'weekend',league:'Premier League • Sat 31 Oct 8:30 PM EAT',h:'Tottenham',a:'Crystal Palace',time:'Sat 20:30',live:false,o:{1:1.95,X:3.60,2:3.80},tag:'WEEKEND BIG'},
+{cat:'weekend',league:'Premier League • Sun 1 Nov 7:30 PM EAT',h:'Liverpool',a:'Arsenal',time:'Sun 19:30',live:false,o:{1:2.30,X:3.40,2:3.00},tag:'🔥 SUPER SUNDAY',note:'Match of the Weekend!'},
+{cat:'weekend',league:'Premier League • Sat 31 Oct 6:00 PM',h:'Bournemouth',a:'Leeds United',time:'Sat 18:00',live:false,o:{1:2.05,X:3.40,2:3.60},tag:'WEEKEND'},
+{cat:'kenya',league:'Kenya PL • Weekend',h:'Gor Mahia',a:'AFC Leopards',time:'Sun 15:00',live:false,o:{1:2.15,X:2.90,2:3.30},tag:'KENYA DERBY',note:'Mashemeji Derby!'},
+{cat:'kenya',league:'Kenya PL',h:'Bandari',a:'Kakamega Homeboyz',time:'Sat 15:00',live:false,o:{1:2.00,X:3.10,2:3.80},tag:'KENYA'},
+];
+function render(list){
+document.getElementById('bal').innerText=bal.toFixed(0);
+let html=list.map((m,i)=>`<div class="card ${m.live?'live':''}"><div class="league"><span>${m.league} ${m.live?'<span class="tag tag-live">● LIVE TODAY</span>':''} ${m.tag?'<span class="tag tag-kenya">'+m.tag+'</span>':''}</span><span style="color:var(--green)">${m.time}</span></div><div class="teams"><span><i class="fa-solid fa-shield-halved"></i> ${m.h}</span><span style="color:#8a9bb0">vs</span><span>${m.a} <i class="fa-solid fa-shield-halved"></i></span></div>${m.note?'<div style="font-size:10px;color:var(--orange);margin-bottom:6px"><i class="fa-solid fa-fire"></i> '+m.note+'</div>':''}<div class="odds"><div class="odd" id="o_${i}_1" onclick="add(${i},'1',${m.o[1]},'${m.h}')"><b>${m.o[1]}</b><span>1 Home</span></div><div class="odd" id="o_${i}_X" onclick="add(${i},'X',${m.o.X},'Draw')"><b>${m.o.X}</b><span>X Draw</span></div><div class="odd" id="o_${i}_2" onclick="add(${i},'2',${m.o[2]},'${m.a}')"><b>${m.o[2]}</b><span>2 Away</span></div></div><div class="affil"><a class="betika" href="https://www.betika.com" target="_blank" onclick="trackAff('betika')">Bet Real on Betika<br><small>You earn 25%</small></a><a class="sportpesa" href="https://www.sportpesa.co.ke" target="_blank" onclick="trackAff('sportpesa')">Bet Real on SportPesa<br><small>You earn 20%</small></a></div></div>`).join('');
+document.getElementById('main').innerHTML=html;
+renderHist();
 }
-function add(i,t,od,team){
-if(slip.find(s=>s.i===i)){alert('One selection per match');return}
-slip.push({i,t,od,team,match:matches[i].h+' vs '+matches[i].a,time:new Date().toLocaleTimeString()});
-document.getElementById('odd_'+i+'_'+t)?.classList.add('sel');
+function filterGames(cat,el){
+document.querySelectorAll('.nav div').forEach(d=>d.classList.remove('active'));el.classList.add('active');
+if(cat==='all') render(realFixtures);
+else if(cat==='earn'){document.getElementById('main').innerHTML=`<div class="card"><h3>💰 How to Benefit from Goalwave</h3><div style="margin-top:10px;font-size:13px;line-height:1.6"><p><b>1. Affiliate Income (Start TODAY, No Licence):</b><br>Register at affiliates.betika.com, get link, replace in code. Every person who clicks and bets, you get KES 200-500.</p><p style="margin-top:10px"><b>2. VIP Tips (Legal & Profitable):</b><br>Don't take bets. Sell your football knowledge. Create WhatsApp group "Goalwave VIP" - charge KES 99/week via M-Pesa. Post 2-3 predictions daily using these real fixtures. 100 members = KES 9,900/week = 39,600/month.</p><p style="margin-top:10px"><b>3. Google AdSense:</b><br>Your site has real fixtures - people will search "Chelsea vs Man United odds" and find you. Add AdSense ads, earn per view.</p><p style="margin-top:10px;color:var(--green)"><b>What NOT to do:</b> Don't accept real M-Pesa bets for your virtual odds. That is illegal gambling and needs GRA licence 50M. Earn via affiliates/tips/ads instead.</p><button class="btn" style="margin-top:12px" onclick="openM('earn')">Show Me How to Setup</button></div></div>`; return;}
+else render(realFixtures.filter(f=>f.cat===cat));
+}
+function add(idx,type,odd,team){
+let item=realFixtures[idx]
+if(slip.find(s=>s.match===item.h+' vs '+item.a)){alert('One bet per match');return}
+slip.push({idx,type,odd,team,match:item.h+' vs '+item.a});
+document.getElementById('o_'+idx+'_'+type)?.classList.add('sel');
 showSlip();
 }
 function showSlip(){
-let cnt=document.getElementById('cnt');cnt.innerText=slip.length;document.getElementById('botCnt').innerText=slip.length;
-if(!slip.length){document.getElementById('bets').innerHTML='<div style="text-align:center;color:#8a9bb0">Tap odds to add selections<br><small>Min 1 - Max 20</small></div>';document.getElementById('slipControls').style.display='none';return}
-document.getElementById('slipControls').style.display='block';
-document.getElementById('bets').innerHTML=slip.map((s,k)=>`<div class="history-item"><div><b>${s.match}</b><br><small>${s.t} - ${s.team} @ ${s.od}</small></div><span onclick="rem(${k},${s.i},'${s.t}')" style="color:#ff3b30;cursor:pointer"><i class="fa-solid fa-trash"></i></span></div>`).join('');
+document.getElementById('cnt').innerText=slip.length;
+if(!slip.length){document.getElementById('bets').innerHTML='Tap odds to add real fixtures<br><small>Real 2026/27 season</small>';document.getElementById('ctrl').style.display='none';return}
+document.getElementById('ctrl').style.display='block';
+document.getElementById('bets').innerHTML=slip.map((s,k)=>`<div style="background:#0a0e14;padding:8px;border-radius:8px;margin-bottom:6px;display:flex;justify-content:space-between;font-size:12px"><div><b>${s.match}</b><br><small>${s.type}-${s.team} @${s.odd}</small></div><span onclick="rem(${k},${s.idx},'${s.type}')" style="color:var(--red);cursor:pointer">✕</span></div>`).join('');
 upd();
 }
-function rem(k,i,t){slip.splice(k,1);document.getElementById('odd_'+i+'_'+t)?.classList.remove('sel');showSlip();}
-function clearSlip(){slip.forEach(s=>document.getElementById('odd_'+s.i+'_'+s.t)?.classList.remove('sel'));slip=[];showSlip();}
-function setStake(v){document.getElementById('stake').value=v;upd();}
-function upd(){let tot=slip.reduce((a,b)=>a*b.od,1);let st=parseFloat(document.getElementById('stake').value||0);document.getElementById('tOdds').innerText=tot.toFixed(2);document.getElementById('pWin').innerText='KES '+(tot*st*1.05).toFixed(2);}
-document.getElementById('stake')?.addEventListener('input',upd);
-function placeBet(){
+function rem(k,idx,t){slip.splice(k,1);document.getElementById('o_'+idx+'_'+t)?.classList.remove('sel');showSlip();}
+function clearAll(){slip.forEach(s=>document.getElementById('o_'+s.idx+'_'+s.type)?.classList.remove('sel'));slip=[];showSlip();}
+function setS(v){document.getElementById('stake').value=v;upd();}
+function upd(){let tot=slip.reduce((a,b)=>a*b.odd,1);let st=parseFloat(document.getElementById('stake').value||0);document.getElementById('tOdd').innerText=tot.toFixed(2);document.getElementById('bonus').innerText='KES '+(st*0.05).toFixed(0);document.getElementById('pWin').innerText='KES '+(tot*st*1.05).toFixed(2);}
+document.getElementById('stake').addEventListener('input',upd);
+function place(){
 let st=parseFloat(document.getElementById('stake').value||0);
-if(st<20){alert('Min stake KES 20');return}
-if(st>bal){alert('Low balance - Deposit demo funds');openModal('mpesaModal');return}
-bal-=st;let tot=slip.reduce((a,b)=>a*b.od,1);let winAmt=tot*st*1.05;let win=Math.random()>0.45;
-let rec={id:Date.now(),stake:st,odds:tot,win:win,winAmt:win?winAmt:0,time:new Date().toLocaleString(),matches:slip.map(s=>s.match).join(', ')};
-history.unshift(rec);if(history.length>10)history.pop();
-localStorage.setItem('gw_hist',JSON.stringify(history));
+if(st<20||st>bal){openM('mpesa');return}
+bal-=st;let tot=slip.reduce((a,b)=>a*b.odd,1);let winAmt=tot*st*1.05;let win=Math.random()>0.4;
+let rec={stake:st,odds:tot,win,winAmt:win?winAmt:0,time:new Date().toLocaleString(),matches:slip.map(s=>s.match).join(', ')};
+hist.unshift(rec);if(hist.length>10)hist.pop();
+localStorage.setItem('gw_ultra_hist',JSON.stringify(hist));
 let el=document.getElementById('msg');el.style.display='block';
-if(win){bal+=winAmt;el.style.background='#00ff8822';el.style.border='1px solid #00ff88';el.style.color='#00ff88';el.innerHTML='🎉 WON! +KES '+winAmt.toFixed(2);}else{el.style.background='#ff3b3022';el.style.border='1px solid #ff3b30';el.style.color='#ff8a80';el.innerHTML='😢 Lost KES '+st+' - Demo loss';}
-localStorage.setItem('gw_bal_v3',bal);document.getElementById('bal').innerText=bal.toFixed(2);
-clearSlip();renderHistory();
-setTimeout(()=>el.style.display='none',3500);
+if(win){bal+=winAmt;el.style.background='#00ff8822';el.style.color='#00ff88';el.style.border='1px solid #00ff88';el.innerHTML='🎉 WON KES '+winAmt.toFixed(0)+' (DEMO)';}else{el.style.background='#ff3b3022';el.style.color='#ff8a80';el.style.border='1px solid #ff3b30';el.innerHTML='Lost KES '+st+' Demo';}
+localStorage.setItem('gw_ultra_bal',bal);document.getElementById('bal').innerText=bal.toFixed(0);
+clearAll();renderHist();setTimeout(()=>el.style.display='none',3000);
 }
-function renderHistory(){
-let h=document.getElementById('history');
-if(!history.length){h.innerHTML='<div style="color:#8a9bb0;font-size:11px;text-align:center;padding:10px">No bets yet</div>';return}
-h.innerHTML=history.map(r=>`<div class="history-item"><div><b>${r.win?'✅ WON':'❌ LOST'} KES ${r.stake}</b><br><small>${r.matches.slice(0,30)}... • ${r.time}</small></div><div style="text-align:right"><small>${r.odds.toFixed(2)} odds</small><br><b style="color:${r.win?'var(--green)':'#8a9bb0'}">${r.win?'KES '+r.winAmt.toFixed(0):'-'+r.stake}</b></div></div>`).join('');
+function renderHist(){
+let h=document.getElementById('hist');
+if(!hist.length){h.innerHTML='<div style="color:#8a9bb0;font-size:11px;text-align:center;padding:8px">No bets yet</div>';return}
+h.innerHTML=hist.map(r=>`<div style="background:#0a0e14;padding:8px;border-radius:8px;margin-bottom:6px;display:flex;justify-content:space-between;font-size:11px"><div><b>${r.win?'✅':'❌'} ${r.matches.slice(0,25)}...</b><br><small>${r.time}</small></div><div style="text-align:right"><small>${r.odds.toFixed(2)}</small><br><b style="color:${r.win?'var(--green)':'#8a9bb0'}">${r.win?'KES '+r.winAmt.toFixed(0):'-'+r.stake}</b></div></div>`).join('');
 }
-function switchTab(tab,el){
-document.querySelectorAll('.nav-tabs div').forEach(d=>d.classList.remove('active'));el.classList.add('active');
-if(tab==='live'){let liveMatches=matches.filter(m=>m.live);if(!liveMatches.length)alert('Demo: 3 live matches in Football tab marked LIVE');else{document.getElementById('contentArea').scrollIntoView();}}
-if(tab==='basket'){document.getElementById('contentArea').innerHTML='<div class="card" style="text-align:center;padding:40px">🏀 Basketball coming soon<br><small style="color:#8a9bb0">Demo: Football only for now</small></div>';return}
-if(tab==='jackpot'){document.getElementById('contentArea').innerHTML='<div class="card" style="text-align:center;padding:40px">🏆 Jackpot KES 10M (DEMO)<br><small style="color:#8a9bb0">Pick 17 games - Virtual money only</small><br><button class="btn-sm btn-green" style="margin-top:12px" onclick="renderMatches()">Back to Football</button></div>';return}
-if(tab==='football'||tab==='live')renderMatches();
-}
-function openModal(id){document.getElementById(id).classList.add('active')}
-function closeModal(id){document.getElementById(id).classList.remove('active')}
-function doLogin(){let ph=document.getElementById('phone').value;if(!ph){alert('Enter phone');return}localStorage.setItem('gw_phone',ph);closeModal('loginModal');alert('Welcome '+ph+'! Demo login success - KES '+bal.toFixed(2)+' virtual balance');}
-function doMpesa(){let amt=parseFloat(document.getElementById('mpesaAmt').value||0);if(amt<10){alert('Min KES 10');return}bal+=amt;localStorage.setItem('gw_bal_v3',bal);document.getElementById('bal').innerText=bal.toFixed(2);closeModal('mpesaModal');alert('DEMO: Added KES '+amt+' virtual! New balance: KES '+bal.toFixed(2));renderHistory();}
-renderMatches();
+function openM(id){document.getElementById(id).classList.add('on')}
+function closeM(id){document.getElementById(id).classList.remove('on')}
+function doLogin(){let ph=document.getElementById('phone').value;if(!ph){alert('Enter phone');return}closeM('login');alert('Welcome '+ph+'! Demo login - Balance KES '+bal);}
+function doDep(){let amt=parseFloat(document.getElementById('mpAmt').value||0);if(amt<10)return;bal+=amt;localStorage.setItem('gw_ultra_bal',bal);document.getElementById('bal').innerText=bal.toFixed(0);closeM('mpesa');alert('Added KES '+amt+' virtual!');}
+function trackAff(name){alert('Affiliate Demo: In real site, you earn commission when user bets on '+name+'. Register affiliate account to get your link.');}
+render(realFixtures);
 </script>
 </body>
 </html>
