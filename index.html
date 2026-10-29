@@ -1,207 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>GOALWAVE Football</title>
-
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #071a16;
-            color: white;
-        }
-
-        header {
-            background: #102b21;
-            padding: 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            color: #b8f34a;
-        }
-
-        nav {
-            background: #183a2c;
-            padding: 15px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 10px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 25px auto;
-            padding: 15px;
-        }
-
-        .match {
-            background: #102b21;
-            padding: 18px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-        }
-
-        .odds {
-            display: flex;
-            gap: 10px;
-        }
-
-        button {
-            flex: 1;
-            padding: 12px;
-            background: #b8f34a;
-            color: #071a16;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background: #d3ff80;
-        }
-
-        #slip {
-            background: #183a2c;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #b7c7be;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOALWAVE - Demo Betting</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+body{background:#0f1419;color:#fff}
+header{background:#1a222d;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
+.logo{font-size:20px;font-weight:900;color:#00ff88}
+.logo span{color:#fff}
+.bal{background:#00ff88;color:#000;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px}
+.container{display:grid;grid-template-columns:1fr 330px;gap:12px;max-width:1200px;margin:12px auto;padding:0 10px}
+@media(max-width:850px){.container{grid-template-columns:1fr}}
+.box{background:#1a222d;border-radius:12px;padding:12px}
+.match{background:#242f3e;border-radius:10px;padding:10px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.odd{display:flex;gap:6px}
+.odd div{background:#0f1419;border:1px solid #34495e;padding:6px 12px;border-radius:8px;cursor:pointer;font-weight:700}
+.odd div:hover{background:#00ff88;color:#000}
+.betslip{position:sticky;top:60px;height:fit-content}
+.input{width:100%;padding:10px;background:#0f1419;border:1px solid #34495e;border-radius:8px;color:#fff;margin:10px 0}
+.btn{width:100%;padding:12px;background:#00ff88;color:#000;border:none;border-radius:10px;font-weight:900;cursor:pointer}
+.small{font-size:11px;color:#8a9bb0}
+</style>
 </head>
-
 <body>
-
 <header>
-    <h1>GOALWAVE</h1>
-    <p>Your football world</p>
+<div class="logo">GOAL<span>WAVE</span> <span style="background:#ff3b30;color:#fff;padding:2px 6px;border-radius:8px;font-size:9px">DEMO</span></div>
+<div class="bal">KES <span id="bal">5000.00</span></div>
 </header>
-
-<nav>
-    <a href="#matches">Matches</a>
-    <a href="#slip">Bet Slip</a>
-</nav>
-
 <div class="container">
-
-    <h2 id="matches">Football Matches</h2>
-
-    <div class="match">
-        <h3>Harbour FC vs Lions United</h3>
-        <p>Sample match · Demo odds</p>
-
-        <div class="odds">
-            <button onclick="addBet('Harbour FC', 2.10)">
-                1: 2.10
-            </button>
-
-            <button onclick="addBet('Draw', 3.25)">
-                X: 3.25
-            </button>
-
-            <button onclick="addBet('Lions United', 3.40)">
-                2: 3.40
-            </button>
-        </div>
-    </div>
-
-    <div class="match">
-        <h3>Blue City vs Red Athletic</h3>
-        <p>Sample match · Demo odds</p>
-
-        <div class="odds">
-            <button onclick="addBet('Blue City', 1.85)">
-                1: 1.85
-            </button>
-
-            <button onclick="addBet('Draw', 3.50)">
-                X: 3.50
-            </button>
-
-            <button onclick="addBet('Red Athletic', 4.10)">
-                2: 4.10
-            </button>
-        </div>
-    </div>
-
-    <div id="slip">
-        <h2>Bet Slip</h2>
-
-        <p id="selection">
-            Select an outcome above.
-        </p>
-
-        <label for="stake">Virtual stake (KSh):</label>
-
-        <input
-            id="stake"
-            type="number"
-            min="1"
-            value="100"
-        >
-
-        <p id="result">Potential return: KSh 0</p>
-
-        <button onclick="calculateReturn()">
-            Calculate Return
-        </button>
-    </div>
-
+<div class="box">
+<h2 style="margin-bottom:10px">Today's Matches - Virtual Money</h2>
+<div id="list"></div>
 </div>
-
-<footer>
-    GOALWAVE DEMO | Virtual money only
-</footer>
-
+<div class="box betslip">
+<h3>Bet Slip (<span id="cnt">0</span>)</h3>
+<div id="bets" style="margin-top:10px;font-size:13px;color:#8a9bb0">Click odds to add bets</div>
+<div id="ctrl" style="display:none">
+<input id="stake" class="input" type="number" value="100" min="10">
+<div style="display:flex;justify-content:space-between;margin:8px 0"><span>Total Odds:</span><b id="tOdds">1.00</b></div>
+<div style="display:flex;justify-content:space-between;margin:8px 0"><span>Possible Win:</span><b id="pWin" style="color:#00ff88">KES 0</b></div>
+<button class="btn" onclick="place()">Place Bet (DEMO)</button>
+<div id="msg" style="display:none;margin-top:10px;padding:10px;border-radius:8px;text-align:center"></div>
+</div>
+<div style="margin-top:12px;padding:8px;background:#ff3b301a;border:1px solid #ff3b30;border-radius:8px;font-size:10px;text-align:center">DEMO ONLY - No real money. Educational purposes.</div>
+</div>
+</div>
 <script>
-    let selectedOdds = 0;
-    let selectedTeam = "";
-
-    function addBet(team, odds) {
-        selectedTeam = team;
-        selectedOdds = odds;
-
-        document.getElementById("selection").textContent =
-            "Selected: " + team + " | Odds: " + odds;
-
-        calculateReturn();
-    }
-
-    function calculateReturn() {
-        const stake = Number(
-            document.getElementById("stake").value
-        );
-
-        if (
-            selectedOdds <= 0 ||
-            !Number.isFinite(stake) ||
-            stake <= 0
-        ) {
-            document.getElementById("result").textContent =
-                "Choose an outcome and enter a valid stake.";
-            return;
-        }
-
-        const potentialReturn = stake * selectedOdds;
-
-        document.getElementById("result").textContent =
-            "Potential return: KSh " +
-            potentialReturn.toFixed(2);
-    }
+let bal=parseFloat(localStorage.getItem('gw_bal')||'5000');
+const matches=[
+{lg:'Premier League',h:'Man City',a:'Arsenal',o:{1:2.15,X:3.4,2:3.1}},
+{lg:'La Liga',h:'Real Madrid',a:'Barcelona',o:{1:2.5,X:3.6,2:2.8}},
+{lg:'Serie A',h:'Inter',a:'AC Milan',o:{1:2.05,X:3.3,2:3.75}},
+{lg:'Kenya PL',h:'Gor Mahia',a:'AFC Leopards',o:{1:2.2,X:2.9,2:3.2}},
+{lg:'UCL',h:'PSG',a:'Bayern',o:{1:2.85,X:3.5,2:2.4}},
+{lg:'Bundesliga',h:'Dortmund',a:'Leverkusen',o:{1:2.3,X:3.4,2:2.95}},
+];
+let slip=[];
+function render(){
+document.getElementById('bal').innerText=bal.toFixed(2);
+document.getElementById('list').innerHTML=matches.map((m,i)=>`<div class="match"><div><div class="small">${m.lg}</div><div style="font-weight:700;font-size:13px">${m.h} vs ${m.a}</div></div><div class="odd"><div onclick="add(${i},'1',${m.o[1]},'${m.h}')">${m.o[1]}<br><span class="small">1</span></div><div onclick="add(${i},'X',${m.o.X},'Draw')">${m.o.X}<br><span class="small">X</span></div><div onclick="add(${i},'2',${m.o[2]},'${m.a}')">${m.o[2]}<br><span class="small">2</span></div></div></div>`).join('');
+}
+function add(i,t,od,team){
+if(slip.find(s=>s.i===i)){alert('One bet per match');return}
+slip.push({i,t,od,team,match:matches[i].h+' vs '+matches[i].a}); show();
+}
+function show(){
+document.getElementById('cnt').innerText=slip.length;
+if(!slip.length){document.getElementById('bets').innerHTML='Click odds to add bets';document.getElementById('ctrl').style.display='none';return}
+document.getElementById('ctrl').style.display='block';
+document.getElementById('bets').innerHTML=slip.map(s=>`<div style="background:#242f3e;padding:8px;border-radius:8px;margin-bottom:6px;display:flex;justify-content:space-between">${s.match}<br><small>${s.t}-${s.team} @${s.od}</small><span onclick="rem('${s.i}_${s.t}')" style="color:#ff3b30;cursor:pointer">x</span></div>`).join('');
+upd();
+}
+function rem(id){let [mi]=id.split('_');slip=slip.filter(s=>!(s.i==mi));show()}
+function upd(){let tot=slip.reduce((a,b)=>a*b.od,1);let st=parseFloat(document.getElementById('stake').value||0);document.getElementById('tOdds').innerText=tot.toFixed(2);document.getElementById('pWin').innerText='KES '+(tot*st).toFixed(2)}
+document.getElementById('stake').addEventListener('input',upd);
+function place(){
+let st=parseFloat(document.getElementById('stake').value||0);
+if(st<10||st>bal){alert('Check stake/balance');return}
+bal-=st;let tot=slip.reduce((a,b)=>a*b.od,1);let winAmt=tot*st;let win=Math.random()>0.45;
+let el=document.getElementById('msg');el.style.display='block';
+if(win){bal+=winAmt;el.style.background='#00ff8822';el.style.border='1px solid #00ff88';el.innerHTML='WON! +KES '+winAmt.toFixed(2);}else{el.style.background='#ff3b3022';el.style.border='1px solid #ff3b30';el.innerHTML='LOST KES '+st+' - Try again (demo)';}
+localStorage.setItem('gw_bal',bal);document.getElementById('bal').innerText=bal.toFixed(2);slip=[];show();setTimeout(()=>el.style.display='none',3000);
+}
+render();
 </script>
-
 </body>
 </html>
